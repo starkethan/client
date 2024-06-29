@@ -23,6 +23,7 @@ import {
   Notification,
   Status,
   StatusShow,
+  Friends
   
   
   
@@ -31,8 +32,8 @@ import {
 
 
 
-function App() {
 
+function App() {
 
   return (
     <div className="App" >
@@ -56,6 +57,7 @@ function App() {
           <Route path="/chats" element={<Chats />} />
           <Route path="/chat/:id" element={<Chat />} />
           <Route path="/p/:id" element={<P />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/About" element={<About />} />
           <Route path="/Services" element={<Services />} />
           <Route path="/Contact" element={<Contact />} />

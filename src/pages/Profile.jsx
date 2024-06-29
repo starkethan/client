@@ -14,6 +14,35 @@ export const Profile = () => {
   const navigate = useNavigate();
   const { username } = useParams();
   const [pic, setPic] = useState();
+  
+
+  const handleClick = (e, receiverId) => {
+    e.preventDefault();
+    var senderId = u._id;
+    console.log(senderId, receiverId);
+    axios
+      .post(`http://localhost:3001/chat/`, { senderId, receiverId })
+      .then((res) => {
+        if (res.data) {
+          navigate("/chats");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleFriend = (e, senderId, friendId, sender, friend) => {
+    e.preventDefault();
+    axios
+    .post(`http://localhost:3001/friends/`, { senderId, friendId, sender, friend })
+    .then((res) => {
+      if (res.data) {
+        alert("Friend request sent successfully")
+        e.target.disabled = true;
+        e.target.textContent = 'Request Sent';
+      }
+    })
+    .catch((err) => console.log(err));
+  }
 
   useEffect(() => {
     axios
@@ -150,26 +179,27 @@ export const Profile = () => {
             </div>
           )}
         </Popup>:<> {user.pic ? (
-          <Link to={`/status/${username}`}>
+          <Link to={user.status.length ? `/status/${username}` : '#'}>
                 <img
                   src={`http://localhost:3001/profile/${user.pic}`}
                   alt="profile pic"
                   className={`w-20 h-20 ml-4 mt-4 lg:w-40 lg:h-40 lg:ml-64 lg:mt-8 rounded-full border border-black ${user.status.length ? 'border-4 border-blue-700 p-1' : 'border border-black'} `}
                 /></Link>
               ) : (
-                <Link to={`/status/${username}`}>
+                <Link to={user.status.length ? `/status/${username}` : '#'}>
                 <img
                   src={profile}
                   alt="profile pic"
                   className={`w-20 h-20 ml-4 mt-4 lg:w-40 lg:h-40 lg:ml-64 lg:mt-8 rounded-full ${user.status.length ? 'border-4 border-blue-700 p-1' : 'border border-black'} `}
-                /></Link>
+                /></Link> 
               )}</>}
-   <div className="text-2xl mt-2 -ml-64 lg:mt-20 lg:ml-20">
+              
+   <div className="text-2xl mt-2 lg:mt-20 lg:ml-20">
           <span className="font-semibold">
             {user.posts.length ? NumberFormat(user.posts.length) : <>0</>}
            </span>{user.posts.length > 1 ?  <> posts</> : <> post</>}
         </div>
-        <div className="text-2xl mt-2 -ml-64 lg:mt-20 lg:ml-20">
+        <div className="text-2xl mt-2 lg:mt-20 lg:ml-12">
           <span className="font-semibold">
             {user.likes.length ? NumberFormat(user.likes.length) : <>0</>}
            </span>{user.likes.length > 1 ?  <> likes</> : <> like</>}
@@ -178,7 +208,7 @@ export const Profile = () => {
         <div className="flex justify-center lg:-ml-[200px] text-2xl font-semibold  mt-2 lg:mt-32">
           {user.username}
         </div>
-     
+    
 
 { username === u.username ? 
 
@@ -247,7 +277,43 @@ export const Profile = () => {
           </div>
         </div>
 
-:<></>}
+:<>
+
+<div className="flex flex-row justify-center gap-4 ml-10 mt-6 lg:ml-10 lg:mt-32">
+        
+          {u.chats.length ? (
+                      <div className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50">
+                        {u.chats.some((c) => c.chat === user._id) ? (
+                          <Link to={`/chats`}>
+                          Message
+                          </Link>
+                        ) : (
+                          <button onClick={(e) => handleClick(e, user._id)}>
+                            Add to Chat
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      <button
+                        onClick={(e) => handleClick(e, user._id)}
+                        className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+                      >
+                        Add to Chat
+                      </button>
+                    )}
+
+
+          <button
+         onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username)}
+         
+            className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+          >
+            Add Friend
+          </button>
+          
+
+        </div>
+</>}
 
 
 

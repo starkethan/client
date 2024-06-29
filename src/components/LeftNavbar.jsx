@@ -72,7 +72,7 @@ const handleLogout = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="h-10 ml-5 w-8 lg:w-10 hover:scale-110 active:opacity-50"
+          className="h-10 ml-5 w-8 lg:w-10 hover:scale-110 active:opacity-50 " 
         >
           <path
             strokeLinecap="round"
@@ -170,7 +170,7 @@ const handleLogout = () => {
           user.notifications.length ? 
           user.notifications.map((n) => {
           
-          <div>
+         return <div>
 
     {
                 n.username !== user.username ? 
@@ -235,7 +235,7 @@ const handleLogout = () => {
       
       <div className="lg:flex hidden">
         
-        <Popup contentStyle={{width: "300px", border:"none", background: "transparent", marginTop: "350px", marginLeft: "70px"}} trigger=
+        <Popup contentStyle={{width: "300px", border:"none", background: "transparent", marginTop: "280px", marginLeft: "70px"}} trigger=
                 {<button title="settings">             
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-10 ml-5 w-8 lg:w-10 transform hover:scale-110 active:opacity-50">
   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
@@ -249,8 +249,19 @@ const handleLogout = () => {
                           <Link to='/settings'className="p-4 px-24" >
           Settings
                             </Link>
+                            
+
 
                           </button>
+
+                          <button className=' dark:bg-zinc-800 dark:text-white bg-white w-full p-4 border-b border-black-50 hover:bg-slate-200 dark:hover:bg-slate-800  active:opacity-50'>
+
+
+                          <Link to='/friends'className="p-4 px-24" >
+          Friends
+                            </Link>
+                            </button>
+
 
                           <button className=' dark:bg-zinc-800 dark:text-white bg-white w-full p-4 border-b border-black-50 hover:bg-slate-200 dark:hover:bg-slate-800  '>
                            

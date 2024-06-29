@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { LeftNavbar } from '../components/LeftNavbar'
 import { Notifications } from '../components/Notifications'
 import axios from 'axios'
 

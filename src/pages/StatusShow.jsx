@@ -15,7 +15,6 @@ export const StatusShow = () => {
   }, []);
   
   const { username } = useParams();
-  var u = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div>

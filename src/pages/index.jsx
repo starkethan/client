@@ -20,3 +20,4 @@ export * from "./Chats";
 export * from "./Chat";
 export * from "./P";
 export * from "./Notification";
+export * from "./Friends";

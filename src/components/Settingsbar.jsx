@@ -25,7 +25,7 @@ export const Settingsbar = () => {
         if (res.data.status) {
   
         } else {
-          navigate('/')
+          navigate('/signup')
         }
       })
     }) 

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useRef, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LeftNavbar } from '../components/LeftNavbar'
 import { RightNavbar } from '../components/RightNavbar'
@@ -14,9 +14,11 @@ export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  console.log(page);
   const [hasMore, setHasMore] = useState();
+
+  const runOnce = useRef(false)
 useEffect(() => {
+  if (runOnce.current === false){
   
     axios
       .get(`http://localhost:3001/post/getposts?page=${page}`)
@@ -28,7 +30,8 @@ useEffect(() => {
         setHasMore(false);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));}
+      return () => runOnce.current = true
   }, [page]);
 
   const handleScroll = () => {
@@ -48,7 +51,7 @@ useEffect(() => {
 
     return () => window.removeEventListener("scroll", handleScroll)
 
-  }, [])
+  })
 
 
   useEffect(() => {
@@ -75,7 +78,7 @@ useEffect(() => {
     })
   }) 
 
-  const [activeTab, setActiveTab] = useState('Public'); // Initial active tab
+  const [activeTab, setActiveTab] = useState('Public'); 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -98,9 +101,9 @@ useEffect(() => {
 <center>
 
 
-      <div className="flex lg:w-[50%] ml-3 border-b  dark:border-gray-600 border-black-50 justify-center  mt-10 lg:mt-0 gap-32">
+      <div className="flex lg:w-[50%] ml-6 border-b  dark:border-gray-600 border-black-50 justify-center  mt-10 lg:mt-0 gap-32">
       <div
-        className={` font-semibold cursor-pointer ${
+        className={`max-[1024px]:w-full lg:text-xl font-semibold cursor-pointer ${
           activeTab === 'Public' ? 'border-b-2 border-blue-500' : ''
         }`}
         onClick={() => handleTabClick('Public')}
@@ -108,7 +111,7 @@ useEffect(() => {
         Public
       </div>
       <div
-        className={` font-semibold cursor-pointer ${
+        className={` max-[1024px]:w-full lg:text-xl font-semibold cursor-pointer ${
           activeTab === 'Friends' ? 'border-b-2 border-blue-500' : ''
         }`}
         onClick={() => handleTabClick('Friends')}

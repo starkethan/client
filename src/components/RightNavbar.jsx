@@ -36,8 +36,8 @@ export const RightNavbar = () => {
   return (
     <div>
       <div className=" bg-white dark:bg-black rounded-3xl border border-black dark:border-gray-600 lg:flex flex-col space-y-1 font-bold  mr-8 p-8 float-right hidden">
-        <div className="flex"><img src={logo} alt="logo" className="dark:hidden h-14 mb-8 rounded-2xl" /></div>
-        <div className="flex"><img src={logo1} alt="logo" className="hidden dark:flex h-14 mb-8 rounded-2xl" /></div>
+        <Link to='/about' className="flex"><img src={logo} alt="logo" className="dark:hidden h-14 mb-8 rounded-2xl" /></Link>
+        <Link to='/about' className="flex"><img src={logo1} alt="logo" className="hidden dark:flex h-14 mb-8 rounded-2xl" /></Link>
         <div className="flex">
         {userData ?   <Link
             to={`/profile/${userData.username}`}

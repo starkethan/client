@@ -44,7 +44,7 @@ export const Header = ({user}) => {
   return (
     <div>
     <div className='flex lg:hidden justify-between px-4 pt-1 bg-white dark:bg-black fixed w-full top-0 border-b border-black-50 dark:border-gray-600'>  
-     <Link to='/home' style={{fontFamily:"Brush script MT"}} className="lg:hidden text-2xl font-mono font-semibold ">
+     <Link to='/about' style={{fontFamily:"Brush script MT"}} className="lg:hidden text-2xl font-mono font-semibold ">
       <img src={logo} alt="logo"  className='dark:hidden h-8 mt-1 rounded-xl'/>
       <img src={logo1} alt="logo"  className='hidden dark:flex h-8 mt-1 rounded-xl'/>
       </Link>
@@ -121,11 +121,18 @@ export const Header = ({user}) => {
                     close => (
                         <div>
                           <button className=' dark:bg-zinc-800 dark:text-white bg-white w-full p-4 border-b border-black-50 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-t-lg  active:opacity-50'>
+                          <Link to='/friends'className="p-4 px-24" >
+          Friends
+                            </Link>
+
+                          </button>
+                          <button className=' dark:bg-zinc-800 dark:text-white bg-white w-full p-4 border-b border-black-50 hover:bg-slate-200 dark:hover:bg-slate-800 active:opacity-50'>
                           <Link to='/about'className="p-4 px-24" >
           About
                             </Link>
 
                           </button>
+
                           <button className=' dark:bg-zinc-800 dark:text-white bg-white w-full p-4 border-b border-black-50 hover:bg-slate-200 dark:hover:bg-slate-800 active:opacity-50'>
                           <Link to='/contact'className="p-4 px-24" >
           Contactus

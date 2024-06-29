@@ -97,7 +97,9 @@ export const Search = () => {
                     {u.chats.length ? (
                       <div className="flex font-semibold bg-blue-500 text-white rounded-full p-2 my-2 px-4">
                         {u.chats.some((c) => c.chat === user._id) ? (
-                          "Already Added"
+                            <Link to={`/chats`}>
+                          Message
+                          </Link>
                         ) : (
                           <button onClick={(e) => handleClick(e, user._id)}>
                             Add to Chat

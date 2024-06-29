@@ -29,7 +29,6 @@ export const Chats = () => {
           `http://localhost:3001/chat/${user._id}`
         );
         setChats(data);
-        // console.log(data)
       } catch (error) {
         console.log(error);
       }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, json } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import axios from 'axios'
 import pic from './assets/userprofile.jpg'

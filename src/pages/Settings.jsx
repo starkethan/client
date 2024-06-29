@@ -18,9 +18,12 @@ export const Settings = () => {
           Hucschat
         </Link>
       </div>
+
       <div>
         <Settingsbar />
       </div>
+
+      
       <div className="flex md:text-3xl text-2xl font-semibold px-10 pt-10">
         Profile
       </div>
