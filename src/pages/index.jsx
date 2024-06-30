@@ -14,8 +14,6 @@ export * from "./Status";
 export * from "./StatusShow";
 export * from "./EditProfile";
 export * from "./CreatePost";
-export * from "./PersonalDetails";
-export * from "./Password";
 export * from "./Chats";
 export * from "./Chat";
 export * from "./P";

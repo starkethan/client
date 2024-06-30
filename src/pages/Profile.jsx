@@ -30,10 +30,10 @@ export const Profile = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleFriend = (e, senderId, friendId, sender, friend) => {
+  const handleFriend = (e, senderId, friendId, sender, friend, sPic, fPic) => {
     e.preventDefault();
     axios
-    .post(`http://localhost:3001/friends/`, { senderId, friendId, sender, friend })
+    .post(`http://localhost:3001/friends/`, { senderId, friendId, sender, friend, sPic, fPic })
     .then((res) => {
       if (res.data) {
         alert("Friend request sent successfully")
@@ -301,15 +301,32 @@ export const Profile = () => {
                         Add to Chat
                       </button>
                     )}
+{
+  u.friends.map((f) => (
 
+    f.friend === user.username ? 
+    <button
+    
+         
+            className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+          >
+            Friend
+          </button>
 
-          <button
-         onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username)}
+:
+
+<button
+         onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username, u.pic, user.pic)}
          
             className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
           >
             Add Friend
           </button>
+
+  ))
+
+          
+}
           
 
         </div>

@@ -7,29 +7,30 @@ import { Link } from 'react-router-dom';
 export const Friends = () => {
     const [activeTab, setActiveTab] = useState('Friends');
     const [requests, setRequests] = useState();
+    var user = JSON.parse(localStorage.getItem("user"));
+
 
     const handleTabClick = (tab) => {
       setActiveTab(tab);
     };
 
-    const handleRequest = (sender, friend, sId, fId) => {
-      console.log(friend);
+    const handleRequest = (sender, friend, sId, fId, sPic, fPic) => {
       
-      // axios.post('http://localhost:3001/friends/', {sender, friend, sId, fId})
-      // .then((res) => {
-      //   if (res.data === "Success") {
-      //     window.location.reload();
-      //   } else {
-      //     alert("Something went wrong")
-      //   }
-      // })
-      // .catch((err) => console.log(err));
+      axios.put('http://localhost:3001/friends/f', {sender, friend, sId, fId, sPic, fPic})
+      .then((res) => {
+        if (res.data === "Success") {
+          window.location.reload();
+        } else {
+          alert("Something went wrong")
+        }
+      })
+      .catch((err) => console.log(err));
 
     }
 
     useEffect(() => {
       axios
-        .get(`${process.env.REACT_APP_API}/friends/requests`)
+        .get(`http://localhost:3001/friends/requests`)
         .then((requests) => {
           setRequests(requests.data);
         })
@@ -60,9 +61,23 @@ export const Friends = () => {
           </div>
         </div>
         {activeTab === 'Friends' && (
-          <div>
-            
+          <div className='mt-5'>
+            {
+              user.friends.length ? 
+              user.friends.map((f) => (
+                <Link to={`/profile/${f.friend}`} key={f._id} className='flex gap-2 lg:w-[50%] border border-gray-600 p-2 m-1 rounded-lg'>
+                <img src={`http://localhost:3001/profile/${f.pic}`} alt="friend" className='h-14 w-14 rounded-full'/>
+                <p className='text-2xl mt-3'>{f.friend}</p>
+</Link>
+              ))
+              :
               <p className='text-3xl p-10'>No friends</p>
+
+
+            }
+
+          
+            
             
           </div>
         )}
@@ -79,7 +94,7 @@ export const Friends = () => {
                  sent you a friend request.
                   </div>
                   <div className='flex justify-center gap-2'>
-                  <button onClick={() => handleRequest(request.Sender, request.Friend, request.SenderId, request.FriendId)} className='bg-blue-600 p-1 px-4 rounded-full text-white'>Accept</button>
+                  <button onClick={() => handleRequest(request.Sender, request.Friend, request.SenderId, request.FriendId, request.Spic, request.Fpic)} className='bg-blue-600 p-1 px-4 rounded-full text-white'>Accept</button>
                   <button className='bg-blue-600 p-1 px-4 rounded-full text-white'>Reject</button>
                   </div>
                   </li>

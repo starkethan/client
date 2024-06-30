@@ -15,8 +15,6 @@ import {
   Profile,
   EditProfile,
   CreatePost,
-  PersonalDetails,
-  Password,
   Chats,
   Chat,
   P,
@@ -51,8 +49,6 @@ function App() {
           <Route path="/CreatePost" element={<CreatePost />} />
           <Route path="/Notification" element={<Notification />} />
           <Route path="/Settings" element={<Settings />} />
-          <Route path="/personaldetails" element={<PersonalDetails />} />
-          <Route path="/password" element={<Password />} /> 
           <Route path="/Search" element={<Search />} />
           <Route path="/chats" element={<Chats />} />
           <Route path="/chat/:id" element={<Chat />} />
