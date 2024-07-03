@@ -1,5 +1,6 @@
 {
   "name": "hucschat",
+  "homepage": "https://github.com/starkethan/frontend.git",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

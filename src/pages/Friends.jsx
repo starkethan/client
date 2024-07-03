@@ -2,21 +2,46 @@ import React, { useEffect, useState } from 'react'
 import { LeftNavbar } from '../components/LeftNavbar'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment'
 
 
 export const Friends = () => {
     const [activeTab, setActiveTab] = useState('Friends');
     const [requests, setRequests] = useState();
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+      axios
+        .get("http://localhost:3001/auth/getuser")
+        .then((response) => {
+          setUserData(response.data);
+        })
+        .catch((err) => console.log(err));
+    }, []);
+    localStorage.setItem("user", JSON.stringify(userData));
+  
     var user = JSON.parse(localStorage.getItem("user"));
-
 
     const handleTabClick = (tab) => {
       setActiveTab(tab);
     };
 
-    const handleRequest = (sender, friend, sId, fId, sPic, fPic) => {
+    const handleRequest = (sender, friend, sId, fId, sPic, fPic, rId) => {
       
-      axios.put('http://localhost:3001/friends/f', {sender, friend, sId, fId, sPic, fPic})
+      axios.put('http://localhost:3001/friends/f', {sender, friend, sId, fId, sPic, fPic, rId})
+      .then((res) => {
+        if (res.data === "Success") {
+          window.location.reload();
+        } else {
+          alert("Something went wrong")
+        }
+      })
+      .catch((err) => console.log(err));
+
+    }
+
+    const handleReject = (rId) => {
+      
+      axios.put('http://localhost:3001/friends/r', {rId})
       .then((res) => {
         if (res.data === "Success") {
           window.location.reload();
@@ -62,13 +87,16 @@ export const Friends = () => {
         </div>
         {activeTab === 'Friends' && (
           <div className='mt-5'>
-            {
-              user.friends.length ? 
+            { 
+              user && user.friends.length ? 
               user.friends.map((f) => (
-                <Link to={`/profile/${f.friend}`} key={f._id} className='flex gap-2 lg:w-[50%] border border-gray-600 p-2 m-1 rounded-lg'>
+                <div key={user._id} className='flex justify-between border border-gray-600 p-2 m-1 rounded-lg lg:w-[50%]'>
+                <Link to={`/profile/${f.friend}`} key={f._id} className='flex gap-2 '>
                 <img src={`http://localhost:3001/profile/${f.pic}`} alt="friend" className='h-14 w-14 rounded-full'/>
                 <p className='text-2xl mt-3'>{f.friend}</p>
 </Link>
+<div className='mt-4'>Since <Moment format='ddd MMM DD YYYY'>{f.created}</Moment> </div>
+</div>
               ))
               :
               <p className='text-3xl p-10'>No friends</p>
@@ -85,7 +113,7 @@ export const Friends = () => {
         {activeTab === 'Requests' && (
           <div className='mt-5'>
             
-            {requests.length > 0 ? (
+            {requests.length ? (
               <ul>
                 {requests.map((request) => (
                   <li className='lg:flex lg:justify-between lg:w-[50%] border border-gray-600 p-3 m-1 rounded-lg'  key={request._id}> 
@@ -94,10 +122,11 @@ export const Friends = () => {
                  sent you a friend request.
                   </div>
                   <div className='flex justify-center gap-2'>
-                  <button onClick={() => handleRequest(request.Sender, request.Friend, request.SenderId, request.FriendId, request.Spic, request.Fpic)} className='bg-blue-600 p-1 px-4 rounded-full text-white'>Accept</button>
-                  <button className='bg-blue-600 p-1 px-4 rounded-full text-white'>Reject</button>
+                  <button onClick={() => handleRequest(request.Sender, request.Friend, request.SenderId, request.FriendId, request.Spic, request.Fpic, request._id)} className='bg-blue-600 p-1 px-4 rounded-full text-white active:opacity-50'>Accept</button>
+                  <button onClick={() => handleReject(request._id)} className='bg-red-600 p-1 px-4 rounded-full text-white active:opacity-50'>Reject</button>
                   </div>
-                  </li>
+                  </li> 
+
                 ))}
               </ul>
             ) : (

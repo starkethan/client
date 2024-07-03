@@ -58,7 +58,7 @@ export const Settings = () => {
       <div className='bg-gradient-to-r from-purple-200 to-blue-200 flex flex-col h-screen float-left lg:px-10 border-r-2 border-black-50 max-[700px]:p-1'>  
             <Link to='/home' style={{fontFamily:"Brush script MT"}} className='text-2xl font-bold p-4 max-[1024px]:hidden'>Hucschat</Link>
             <div className='flex flex-col gap-10 text-xl font-semibold mt-10'>
-            <div className='hover:bg-slate-600 hover:text-white rounded-3xl'>
+            <div className='hover:bg-gray-400 hover:text-white rounded-3xl'>
                 <Link onClick={() => handleTabClick('Profile')} className={`flex gap-2 p-4 rounded-3xl ${
               activeTab === 'Profile' ? 'bg-black text-white' : ''
             }`}>
@@ -72,7 +72,7 @@ export const Settings = () => {
                 
                 </Link></div>
           
-            <div className='hover:bg-slate-600 hover:text-white  rounded-3xl'>
+            <div className='hover:bg-gray-400 hover:text-white  rounded-3xl'>
             <Link  onClick={() => handleTabClick('Personal')} className={`flex gap-2 p-4 rounded-3xl ${
               activeTab === 'Personal' ? 'bg-black text-white' : ''
             }`}>
@@ -85,7 +85,7 @@ export const Settings = () => {
 </p>
                
                 </Link></div>
-            <div className='hover:bg-slate-600 hover:text-white rounded-3xl'>
+            <div className='hover:bg-gray-400 hover:text-white rounded-3xl'>
             <Link  onClick={() => handleTabClick('Password')} className={`flex gap-2 p-4 rounded-3xl ${
               activeTab === 'Password' ? 'bg-black text-white' : ''
             }`}>

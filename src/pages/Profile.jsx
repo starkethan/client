@@ -11,6 +11,7 @@ export const Profile = () => {
   const [users, setUsers] = useState([]);
   var u = JSON.parse(localStorage.getItem("user"));
   const [posts, setPosts] = useState([]);
+  const [requests, setRequests] = useState();
   const navigate = useNavigate();
   const { username } = useParams();
   const [pic, setPic] = useState();
@@ -29,6 +30,15 @@ export const Profile = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/friends/requestSent`)
+      .then((requests) => {
+        setRequests(requests.data);
+      })
+      .catch((err) => console.log(err));
+  },[]);
 
   const handleFriend = (e, senderId, friendId, sender, friend, sPic, fPic) => {
     e.preventDefault();
@@ -301,33 +311,49 @@ export const Profile = () => {
                         Add to Chat
                       </button>
                     )}
+
 {
-  u.friends.map((f) => (
-
-    f.friend === user.username ? 
-    <button
-    
-         
-            className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
-          >
-            Friend
-          </button>
-
+requests.some(r => r.Friend === username) ? 
+ <button 
+    className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+  >
+    Request sent
+  </button>
 :
-
+u.friends.length && !u.friends.some(f => f.friend === user.username) ? (
+  <button
+  onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username, u.pic, user.pic)}
+  
+     className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+   >
+     Add Friend
+   </button>
+) :
+!u.friends.length ?
 <button
-         onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username, u.pic, user.pic)}
-         
-            className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
-          >
-            Add Friend
-          </button>
+onClick={(e) => handleFriend(e, u._id, user._id, u.username, user.username, u.pic, user.pic)}
 
+   className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+ >
+   Add Friend
+ </button>
+ :
+ (
+  u.friends.map((f) => (
+    f.friend === user.username ? 
+    <button     
+    className=" bg-blue-500 text-white dark:bg-gray-800 dark:hover:bg-blue-700 rounded-lg p-2 mb-6 font-semibold transform active:opacity-50"
+  >
+    Friend
+  </button>
+    : null
   ))
+)}
 
-          
-}
-          
+
+
+
+
 
         </div>
 </>}

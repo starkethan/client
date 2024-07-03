@@ -191,7 +191,6 @@ export const P = () => {
           <div className="flex">
             <div className="w-[60%] border-r dark:border-white border-black">
               {post.file.includes(".pdf") ||
-              post.file.includes(".mp4") ||
               post.file.includes(".txt") ? (
                 <center>
                   <iframe
@@ -202,7 +201,18 @@ export const P = () => {
                   ></iframe>
                
                 </center>
-              ) : (
+              ) 
+              :post.file.includes(".mp4") ?
+              <center>
+              <video
+                src={`http://localhost:3001/posts/${post.file}`}
+                controls
+                className="h-[570px] bg-black w-full"
+              ></video>
+           
+            </center>
+
+              : (
                 <img
                   src={`http://localhost:3001/posts/${post.file}`}
                   alt="postpicture"
