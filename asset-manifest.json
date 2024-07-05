@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/starkethan/client.git/static/css/main.fe82874c.css",
+    "main.js": "/starkethan/client.git/static/js/main.f50db06b.js",
+    "static/js/592.de4770ce.chunk.js": "/starkethan/client.git/static/js/592.de4770ce.chunk.js",
+    "static/media/aboutimg1.jpg": "/starkethan/client.git/static/media/aboutimg1.e3c73391b5a971d34b93.jpg",
+    "static/media/hucschatbb.png": "/starkethan/client.git/static/media/hucschatbb.b4d348473fc47dd298a8.png",
+    "static/media/hucschatw.png": "/starkethan/client.git/static/media/hucschatw.0db2f11a4f20298c3175.png",
+    "static/media/hucschatgg.png": "/starkethan/client.git/static/media/hucschatgg.7ce5939ebb16e69b2233.png",
+    "static/media/aboutimg4.jpg": "/starkethan/client.git/static/media/aboutimg4.3a93f75851f0ae477999.jpg",
+    "static/media/aboutimg3.jpg": "/starkethan/client.git/static/media/aboutimg3.68795b22e314881c338f.jpg",
+    "index.html": "/starkethan/client.git/index.html",
+    "main.fe82874c.css.map": "/starkethan/client.git/static/css/main.fe82874c.css.map",
+    "main.f50db06b.js.map": "/starkethan/client.git/static/js/main.f50db06b.js.map",
+    "592.de4770ce.chunk.js.map": "/starkethan/client.git/static/js/592.de4770ce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe82874c.css",
+    "static/js/main.f50db06b.js"
+  ]
+}
