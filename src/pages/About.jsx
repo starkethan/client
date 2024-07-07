@@ -59,6 +59,14 @@ export const About = () => {
           </h1>
         </div>
       </div>
+      <div className="flex flex-col mt-20">
+          <p className="text-3xl underline mb-2 font-semibold">About the developer </p>
+          <p className="text-justify p-4">Hi, I'm <b>Rahat Sharma</b>, a final year MCA(2022-2024) student at University of Jammu.
+             This project serves as the culmination of my academic journey and demonstrates my
+             understanding of web development principles, particularly in utilizing javascript.
+             Throughout this project, I significantly improved my proficiency
+             in javascript and gained valuable experience in user interface design using reactjs and tailwind css.</p>
+        </div>
       <div className="border-t-2 border-gray-100 dark:border-gray-700 mt-20 p-20">
         <h1
           style={{ fontFamily: "Brush script MT" }}
