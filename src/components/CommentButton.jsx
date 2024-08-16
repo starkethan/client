@@ -16,7 +16,7 @@ export const CommentButton = ({ post, trigger }) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setUser(response.data);
       })
@@ -28,7 +28,7 @@ export const CommentButton = ({ post, trigger }) => {
 
   const handleDelete = (id, userId, file, caption) => {
     axios
-      .put("http://localhost:3001/post/deletepost/" + id, {userId, file, caption})
+      .put(`${process.env.REACT_APP_API}/post/deletepost/` + id, {userId, file, caption})
       .then((result) => {
         window.location.reload();
       })
@@ -36,7 +36,7 @@ export const CommentButton = ({ post, trigger }) => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getusers")
+      .get(`${process.env.REACT_APP_API}/auth/getusers`)
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
   }, []);
@@ -46,7 +46,7 @@ export const CommentButton = ({ post, trigger }) => {
     setComment("");
     
     axios
-      .put("http://localhost:3001/post/comments/" + id, { comment, userId })
+      .put(`${process.env.REACT_APP_API}/post/comments/` + id, { comment, userId })
 
       .then((res) => {
         if (res.data === "Success") {
@@ -60,7 +60,7 @@ export const CommentButton = ({ post, trigger }) => {
     e.preventDefault();
   
     axios
-    .put("http://localhost:3001/post/deletecomment/" + id, { comment })
+    .put(`${process.env.REACT_APP_API}/post/deletecomment/` + id, { comment })
     .then((res) => {
       if (res.data === "Success") {
         navigate("/home");
@@ -117,7 +117,7 @@ export const CommentButton = ({ post, trigger }) => {
                 
             { post.file.includes(".pdf") || post.file.includes(".mp4") || post.file.includes(".txt") ? (
                 <center>
-                                      <iframe src={`http://localhost:3001/posts/${post.file}`}  title="file"  className="h-40 w-40" ></iframe>
+                                      <iframe src={`${process.env.REACT_APP_API}/posts/${post.file}`}  title="file"  className="h-40 w-40" ></iframe>
 
               
            
@@ -125,7 +125,7 @@ export const CommentButton = ({ post, trigger }) => {
               ) : (
                 <center>
                     <img
-                  src={`http://localhost:3001/posts/${post.file}`}
+                  src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                   alt="postpicture"
                   className="h-40 w-40"
                 />
@@ -202,7 +202,7 @@ export const CommentButton = ({ post, trigger }) => {
                 <div className="flex">
                   {/* view button inside comment section */}
                   <Link title="Open in new tab"
-                    to={`http://localhost:3001/posts/${post.file}`}
+                    to={`${process.env.REACT_APP_API}/posts/${post.file}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

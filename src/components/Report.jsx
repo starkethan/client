@@ -8,14 +8,14 @@ export const Report = ({post, comment, trigger}) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setUser(response.data);
       })
       .catch((err) => console.log(err));
   }, []);
   
-  const postUrl = `http://localhost:3000/p/${post._id}`;
+  const postUrl = `/p/${post._id}`;
 
     const r1 = "I don't like it"
     const r2 = "Bullying or harassment"
@@ -28,7 +28,7 @@ export const Report = ({post, comment, trigger}) => {
 
     const handleReport = (username, reason, sender, email, postUrl, comment) => {
     axios
-      .post("http://localhost:3001/report/", {
+      .post(`${process.env.REACT_APP_API}/report/`, {
         username,
         reason,
         sender,
@@ -118,29 +118,7 @@ export const Report = ({post, comment, trigger}) => {
                 <div onClick={() => handleReport(post.username, r7, user.username, user.email, postUrl, comment)} className="p-1 rounded-2xl hover:bg-slate-200">
                   <p className="mt-2 ml-6">{r7}</p>
                 </div>
-            
-
-
-               
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
+          
               </div>
 
             </div>

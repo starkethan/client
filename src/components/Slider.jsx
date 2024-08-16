@@ -18,15 +18,15 @@ export const Slider = ({username}) => {
 
 useEffect(() => {
   axios
-    .get("http://localhost:3001/story/getstory")
+    .get(`${process.env.REACT_APP_API}/story/getstory`)
     .then((stories) => setStories(stories.data))
     .catch((err) => console.log(err));
 }, []);
 
   const slides = stories ? stories.flatMap(story =>
     story.stories.filter(s => s.username === username).map(s => ({
-      url: 'http://localhost:3001/stories/' + s.story,
-      type: getExtensionFromUrl('http://localhost:3001/stories/' + s.story) ,
+      url: `${process.env.REACT_APP_API}/stories/` + s.story,
+      type: getExtensionFromUrl(`${process.env.REACT_APP_API}/stories/` + s.story) ,
       userId: s.userId,
       username: s.username,
       createdAt: s.createdAt
@@ -36,7 +36,7 @@ useEffect(() => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getusers")
+      .get(`${process.env.REACT_APP_API}/auth/getusers`)
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
   }, []);
@@ -80,7 +80,7 @@ user._id === slides[currentIndex].userId ?
   <Link to={`/profile/${user.username}`}  className='absolute p-2 left-1'>
     <div className='flex gap-2'>
       { user.pic ? 
-      <img src={`http://localhost:3001/profile/${user.pic}`} alt="profile" className='h-12 w-12 rounded-full'/>
+      <img src={`${process.env.REACT_APP_API}/profile/${user.pic}`} alt="profile" className='h-12 w-12 rounded-full'/>
       :       <img src={pic} alt="profile" className='h-12 w-12 rounded-full'/>
 
        }
@@ -97,7 +97,7 @@ user._id === slides[currentIndex].userId ?
   <Link to={`/profile/${user.username}`}  className='absolute p-2 left-1'>
     <div className='flex gap-2'>
       { user.pic ? 
-      <img src={`http://localhost:3001/profile/${user.pic}`} alt="profile" className='h-12 w-12 rounded-full'/>
+      <img src={`${process.env.REACT_APP_API}/profile/${user.pic}`} alt="profile" className='h-12 w-12 rounded-full'/>
       :       <img src={pic} alt="profile" className='h-12 w-12 rounded-full'/>
     }  <p className='text-xl text-white font-medium mt-2'>  {user.username} </p> 
      <div  className='mt-4 text-white text-xs'><Moment format='ddd hh:mm A'>{slides[currentIndex].createdAt}</Moment></div>

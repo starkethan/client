@@ -10,7 +10,7 @@ export const MatchedUser = ({ users, post, c, c1 }) =>  {
       <Link key={matchingUser.id} to={`/profile/${matchingUser.username}`} className="flex">
         { matchingUser.pic ?
         <img
-          src={`http://localhost:3001/profile/${matchingUser.pic}`}
+          src={`${process.env.REACT_APP_API}/profile/${matchingUser.pic}`}
           alt="profilepic"
           className={c}
         />  : <img

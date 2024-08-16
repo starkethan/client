@@ -9,7 +9,7 @@ export const ChatBar = ({data, currentUserId, online}) => {
         const [users, setUsers] = useState([]);
         useEffect(() => {
           axios
-            .get("http://localhost:3001/auth/getusers")
+            .get(`${process.env.REACT_APP_API}/auth/getusers`)
             .then((users) => setUsers(users.data))
             .catch((err) => console.log(err));
         }, []);
@@ -28,7 +28,7 @@ return <div key={user._id}>
         user.pic ?
         
         <img
-                    src={`http://localhost:3001/profile/${user.pic}`}
+                    src={`${process.env.REACT_APP_API}/profile/${user.pic}`}
                     alt="profile"
                     className="w-14 h-14 rounded-full"
                   /> :

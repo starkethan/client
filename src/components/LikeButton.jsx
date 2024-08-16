@@ -5,7 +5,7 @@ export const LikeButton = ({ post }) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setUser(response.data);
       })
@@ -14,7 +14,7 @@ export const LikeButton = ({ post }) => {
 
   const handleLike = (id, userId) => {
     try {
-      axios.put("http://localhost:3001/post/like/" + id, {userId}).then((res) => {
+      axios.put(`${process.env.REACT_APP_API}/post/like/` + id, {userId}).then((res) => {
         if (res.data === "Success") {
         }
       });
@@ -24,7 +24,7 @@ export const LikeButton = ({ post }) => {
   };
   const handleUnLike = (id, userId) => {
     try {
-      axios.put("http://localhost:3001/post/unlike/" + id, {userId}).then((res) => {
+      axios.put(`${process.env.REACT_APP_API}/post/unlike/` + id, {userId}).then((res) => {
         if (res.data === "Success") {
         }
       });

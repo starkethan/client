@@ -15,10 +15,13 @@ export const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    document.title = "Contact | Hucschat"
+  })
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get('http://localhost:3001/auth/verify')
+    axios.get(`${process.env.REACT_APP_API}/auth/verify`)
     .then(res => {
       if (res.data.status) {
 
@@ -28,13 +31,10 @@ export const Contact = () => {
     })
   }) 
 
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/user/contactus", {
+      .post(`${process.env.REACT_APP_API}/user/contactus`, {
         name,
         email,
         message,

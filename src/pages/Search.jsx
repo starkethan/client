@@ -11,8 +11,12 @@ export const Search = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Search | Hucschat"
+  })
+
+  useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getusers")
+      .get(`${process.env.REACT_APP_API}/auth/getusers`)
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
   }, []);
@@ -22,7 +26,7 @@ export const Search = () => {
     var senderId = u._id;
     console.log(senderId, receiverId);
     axios
-      .post(`http://localhost:3001/chat/`, { senderId, receiverId })
+      .post(`${process.env.REACT_APP_API}/chat/`, { senderId, receiverId })
       .then((res) => {
         if (res.data) {
           navigate("/chats");
@@ -77,7 +81,7 @@ export const Search = () => {
                     <Link to={`/profile/${user.username}`} className="flex gap-4">
                       {user.pic ? (
                         <img
-                          src={`http://localhost:3001/profile/${user.pic}`}
+                          src={`${process.env.REACT_APP_API}/profile/${user.pic}`}
                           alt="profile"
                           className="w-14 h-14 rounded-full"
                         />

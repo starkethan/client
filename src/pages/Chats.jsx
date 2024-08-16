@@ -11,10 +11,12 @@ export const Chats = () => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
 
-
+  useEffect(() => {
+    document.title = "Chat | Hucschat"
+  })
 
   useEffect(() => {
-    socket.current = io("http://localhost:3001");
+    socket.current = io(`${process.env.REACT_APP_API}`);
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
@@ -26,7 +28,7 @@ export const Chats = () => {
     const getChats = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3001/chat/${user._id}`
+          `${process.env.REACT_APP_API}/chat/${user._id}`
         );
         setChats(data);
       } catch (error) {

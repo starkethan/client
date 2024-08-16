@@ -31,7 +31,7 @@ export const ChatBox = ({
   const [users, setUsers] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getusers")
+      .get(`${process.env.REACT_APP_API}/auth/getusers`)
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
   }, []);
@@ -40,7 +40,7 @@ export const ChatBox = ({
     const fetchMessages = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3001/message/${chat._id}`
+          `${process.env.REACT_APP_API}/message/${chat._id}`
         );
         setMessages(data);
       } catch (error) {
@@ -63,7 +63,7 @@ export const ChatBox = ({
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/message/file",
+        `${process.env.REACT_APP_API}/message/file`,
         message
       );
       setMessages([...messages, data]);
@@ -87,7 +87,7 @@ export const ChatBox = ({
     if (newMessage) {
       try {
         const { data } = await axios.post(
-          `http://localhost:3001/message/`,
+          `${process.env.REACT_APP_API}/message/`,
           message
         );
         setMessages([...messages, data]);
@@ -137,7 +137,7 @@ export const ChatBox = ({
                         {user.pic ? (
                           <div>
                             <img
-                              src={`http://localhost:3001/profile/${user.pic}`}
+                              src={`${process.env.REACT_APP_API}/profile/${user.pic}`}
                               alt="profile pic"
                               className="w-12 h-12 ml-2 mt-2 mb-2 rounded-full border border-black"
                             />
@@ -224,12 +224,12 @@ export const ChatBox = ({
                                     message.file.includes(".txt") ? (
                                       <center className="rounded-l-3xl w-[310px] break-words rounded-tr-3xl float-right border-4 border-blue-500 mb-2 mt-2 clearfix">
                                         <iframe
-                                          src={`http://localhost:3001/message/${message.file}`}
+                                          src={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           title="file"
                                           className="p-1 mb-2  rounded-t-2xl h-[300px] w-[300px] border-b border-black"
                                         ></iframe>
                                         <Link
-                                          to={`http://localhost:3001/message/${message.file}`}
+                                          to={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           className="bg-blue-500 text-white px-4 py-1 w-full float-right active:opacity-50 rounded-full"
                                         >
                                           Open{" "}
@@ -245,12 +245,12 @@ export const ChatBox = ({
                                       </center>
                                     ) : (
                                       <Link
-                                        to={`http://localhost:3001/message/${message.file}`}
+                                        to={`${process.env.REACT_APP_API}/message/${message.file}`}
                                         className="rounded-l-3xl mx-4 w-[300px] break-words rounded-tr-3xl float-right border-4 border-blue-500 mb-2 mt-2 clearfix"
                                         rel="noopener noreferrer"
                                       >
                                         <img
-                                          src={`http://localhost:3001/message/${message.file}`}
+                                          src={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           alt="file"
                                           className="p-1 rounded-t-2xl h-[300px] w-[300px] border-b border-black"
                                         />
@@ -294,12 +294,12 @@ export const ChatBox = ({
                                     message.file.includes(".txt") ? (
                                       <center className="rounded-r-3xl mx-4 w-[310px] break-words rounded-bl-3xl float-left border-4 border-gray-300 mb-2 mt-2 clearfix">
                                         <iframe
-                                          src={`http://localhost:3001/message/${message.file}`}
+                                          src={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           title="file"
                                           className="p-1 mb-2 rounded-t-2xl h-[300px] w-[300px] border-b border-black"
                                         ></iframe>
                                         <Link
-                                          to={`http://localhost:3001/message/${message.file}`}
+                                          to={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           className="bg-blue-500 text-white px-4 py-1 w-full float-right active:opacity-50 rounded-full"
                                         >
                                           Open{" "}
@@ -315,12 +315,12 @@ export const ChatBox = ({
                                       </center>
                                     ) : (
                                       <Link
-                                        to={`http://localhost:3001/message/${message.file}`}
+                                        to={`${process.env.REACT_APP_API}/message/${message.file}`}
                                         className="rounded-r-3xl mx-4 w-[300px] break-words rounded-bl-3xl float-left border-4 border-gray-300 mb-2 mt-2 clearfix"
                                         rel="noopener noreferrer"
                                       >
                                         <img
-                                          src={`http://localhost:3001/message/${message.file}`}
+                                          src={`${process.env.REACT_APP_API}/message/${message.file}`}
                                           alt="file"
                                           className="p-1 rounded-tr-3xl h-[300px] w-[300px] border-b border-black"
                                         />

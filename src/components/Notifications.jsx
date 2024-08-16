@@ -11,7 +11,7 @@ export const Notifications = () => {
     const [user, setUser] = useState(null);
     useEffect(() => {
       axios
-        .get("http://localhost:3001/auth/getuser")
+        .get(`${process.env.REACT_APP_API}/auth/getuser`)
         .then((response) => {
           setUser(response.data);
         })
@@ -21,14 +21,14 @@ export const Notifications = () => {
     var u = JSON.parse(localStorage.getItem('user'));
     useEffect(() => {
       axios
-        .get("http://localhost:3001/auth/getusers")
+        .get(`${process.env.REACT_APP_API}/auth/getusers`)
         .then((users) => setUsers(users.data))
         .catch((err) => console.log(err));
     }, []);
   
     const handleRemove = (id) => {
       axios
-      .put("http://localhost:3001/auth/remove/"+ id)
+      .put(`${process.env.REACT_APP_API}/auth/remove/`+ id)
        window.location.reload();
     }
     
@@ -71,7 +71,7 @@ export const Notifications = () => {
  {users.map((u) => {
                 return (
                 u.email === n.email ? ( u.pic ? 
-                <div><img src={`http://localhost:3001/profile/${u.pic}`} alt="profile" className='w-10 h-10 rounded-full'/></div>
+                <div><img src={`${process.env.REACT_APP_API}/profile/${u.pic}`} alt="profile" className='w-10 h-10 rounded-full'/></div>
                 :<div><img src={pic} alt="profile" className='w-10 h-10 rounded-full'/></div>
 
                  ) : null

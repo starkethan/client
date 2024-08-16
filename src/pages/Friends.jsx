@@ -9,9 +9,14 @@ export const Friends = () => {
     const [activeTab, setActiveTab] = useState('Friends');
     const [requests, setRequests] = useState();
     const [userData, setUserData] = useState(null);
+
+     useEffect(() => {
+    document.title = "Hucschat"
+  })
+  
     useEffect(() => {
       axios
-        .get("http://localhost:3001/auth/getuser")
+        .get(`${process.env.REACT_APP_API}/auth/getuser`)
         .then((response) => {
           setUserData(response.data);
         })
@@ -27,7 +32,7 @@ export const Friends = () => {
 
     const handleRequest = (sender, friend, sId, fId, sPic, fPic, rId) => {
       
-      axios.put('http://localhost:3001/friends/f', {sender, friend, sId, fId, sPic, fPic, rId})
+      axios.put(`${process.env.REACT_APP_API}/friends/f`, {sender, friend, sId, fId, sPic, fPic, rId})
       .then((res) => {
         if (res.data === "Success") {
           window.location.reload();
@@ -41,7 +46,7 @@ export const Friends = () => {
 
     const handleReject = (rId) => {
       
-      axios.put('http://localhost:3001/friends/r', {rId})
+      axios.put(`${process.env.REACT_APP_API}/friends/r`, {rId})
       .then((res) => {
         if (res.data === "Success") {
           window.location.reload();
@@ -55,7 +60,7 @@ export const Friends = () => {
 
     useEffect(() => {
       axios
-        .get(`http://localhost:3001/friends/requests`)
+        .get(`${process.env.REACT_APP_API}/friends/requests`)
         .then((requests) => {
           setRequests(requests.data);
         })
@@ -66,7 +71,7 @@ export const Friends = () => {
     <div>
         <LeftNavbar />
 
-        <center>
+        <center className='dark:text-white'>
         <div className="flex lg:w-[50%] ml-3 border-b dark:border-gray-600 border-black-50 justify-center mt-10 lg:mt-0 gap-32">
           <div
             className={`lg:text-2xl font-semibold cursor-pointer ${
@@ -92,7 +97,7 @@ export const Friends = () => {
               user.friends.map((f) => (
                 <div key={user._id} className='flex justify-between border border-gray-600 p-2 m-1 rounded-lg lg:w-[50%]'>
                 <Link to={`/profile/${f.friend}`} key={f._id} className='flex gap-2 '>
-                <img src={`http://localhost:3001/profile/${f.pic}`} alt="friend" className='h-14 w-14 rounded-full'/>
+                <img src={`${process.env.REACT_APP_API}/profile/${f.pic}`} alt="friend" className='h-14 w-14 rounded-full'/>
                 <p className='text-2xl mt-3'>{f.friend}</p>
 </Link>
 <div className='mt-4'>Since <Moment format='ddd MMM DD YYYY'>{f.created}</Moment> </div>

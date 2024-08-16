@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../components/assets/hucschatgg.png'
@@ -10,9 +10,13 @@ export const Login = () => {
 
   Axios.defaults.withCredentials = true;
 
+  useEffect(() => {
+    document.title = "Hucschat"
+  })
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3001/auth/login", {
+    Axios.post(`${process.env.REACT_APP_API}/auth/login`, {
       email,
       password,
     })

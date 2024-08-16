@@ -10,7 +10,7 @@ export const RightNavbar = () => {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setUserData(response.data);
       })
@@ -22,7 +22,7 @@ export const RightNavbar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     axios
-      .get("http://localhost:3001/auth/logout")
+      .get(`${process.env.REACT_APP_API}/auth/logout`)
       .then((res) => {
         if (res.data.status) {
           localStorage.removeItem('user')
@@ -49,7 +49,7 @@ export const RightNavbar = () => {
          
             <div>
              { userData.pic ? 
-            <img src={`http://localhost:3001/profile/${userData.pic}`}  alt="profile" className="w-20 h-20 rounded-full border border-black" /> 
+            <img src={`${process.env.REACT_APP_API}/profile/${userData.pic}`}  alt="profile" className="w-20 h-20 rounded-full border border-black" /> 
           :  <img src={pic} alt="profile" className="w-20 h-20 rounded-full border border-black" />
              }</div>
             

@@ -21,8 +21,12 @@ export const P = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Hucschat"
+  })
+
+  useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getusers")
+      .get(`${process.env.REACT_APP_API}/auth/getusers`)
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
   }, []);
@@ -32,7 +36,7 @@ export const P = () => {
     setComment("");
     
     axios
-      .put("http://localhost:3001/post/comments/" + id, { comment, userId })
+      .put(`${process.env.REACT_APP_API}/post/comments/` + id, { comment, userId })
 
       .then((res) => {
         if (res.data === "Success") {
@@ -46,7 +50,7 @@ export const P = () => {
     e.preventDefault();
   
     axios
-    .put("http://localhost:3001/post/deletecomment/" + id, { comment })
+    .put(`${process.env.REACT_APP_API}/post/deletecomment/` + id, { comment })
     .then((res) => {
       if (res.data === "Success") {
         navigate("/home");
@@ -58,7 +62,7 @@ export const P = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/post/getpost/" + id)
+      .get(`${process.env.REACT_APP_API}/post/getpost/` + id)
       .then((post) => {
         setPost(post.data);
       })
@@ -67,7 +71,7 @@ export const P = () => {
 
   const handleDelete = (id, userId, file, caption) => {
     axios
-      .put("http://localhost:3001/post/deletepost/" + id, {userId, file, caption})
+      .put(`${process.env.REACT_APP_API}/post/deletepost/` + id, {userId, file, caption})
       .then((result) => {
         navigate("/home");
       })
@@ -95,7 +99,7 @@ export const P = () => {
             post.file.includes(".txt") ? (
               <center>
                 <iframe
-                  src={`http://localhost:3001/posts/${post.file}`}
+                  src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                   frameborder="0"
                   title="file"
                   className="h-[700px] w-full"
@@ -104,7 +108,7 @@ export const P = () => {
               </center>
             ) : (
               <img
-                src={`http://localhost:3001/posts/${post.file}`}
+                src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                 alt="postpicture"
                 className="h-[585px] w-full border border-black rounded-sm"
               />
@@ -143,7 +147,7 @@ export const P = () => {
               {/* view button */}
               <Link
                 title="Open in new tab"
-                to={`http://localhost:3001/posts/${post.file}`}
+                to={`${process.env.REACT_APP_API}/posts/${post.file}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -194,7 +198,7 @@ export const P = () => {
               post.file.includes(".txt") ? (
                 <center>
                   <iframe
-                    src={`http://localhost:3001/posts/${post.file}`}
+                    src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                     frameborder="0"
                     title="file"
                     className="h-[570px] w-full"
@@ -205,7 +209,7 @@ export const P = () => {
               :post.file.includes(".mp4") ?
               <center>
               <video
-                src={`http://localhost:3001/posts/${post.file}`}
+                src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                 controls
                 className="h-[570px] bg-black w-full"
               ></video>
@@ -214,7 +218,7 @@ export const P = () => {
 
               : (
                 <img
-                  src={`http://localhost:3001/posts/${post.file}`}
+                  src={`${process.env.REACT_APP_API}/posts/${post.file}`}
                   alt="postpicture"
                   className="h-[570px] w-full border-r dark:border-white border-black rounded-sm"
                 />
@@ -319,7 +323,7 @@ export const P = () => {
                   {/* view button */}
                   <Link
                     title="Open in new tab"
-                    to={`http://localhost:3001/posts/${post.file}`}
+                    to={`${process.env.REACT_APP_API}/posts/${post.file}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

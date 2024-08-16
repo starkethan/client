@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from '../components/assets/hucschatgg.png'
@@ -8,10 +8,13 @@ export const ResetPassword = () => {
   const { token } = useParams();
 
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = "Hucschat"
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3001/auth/reset-password/" + token, {
+    Axios.post(`${process.env.REACT_APP_API}/auth/reset-password/` + token, {
       password,
     })
       .then((response) => {

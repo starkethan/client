@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import aboutimg1 from "../components/assets/aboutimg1.jpg";
 import aboutimg3 from "../components/assets/aboutimg3.jpg";
 import aboutimg4 from "../components/assets/aboutimg4.jpg";
@@ -6,6 +6,9 @@ import logo from '../components/assets/hucschatbb.png'
 import { Link } from "react-router-dom";
 
 export const About = () => {
+  useEffect(() => {
+    document.title = "Hucschat"
+  })
   return (
     <div className="dark:text-white">
        
@@ -25,10 +28,10 @@ export const About = () => {
       <h1        
  className="text-8xl p-20 max-[480px]:text-2xl font-semibold">
         Give people the
-        <span  style={{ fontFamily: "Brush script MT" }} className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
           {""} power {""}
         </span>
-        to Share Photos Videos <span  style={{ fontFamily: "Brush script MT" }} className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+        to Share Photos Videos <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
           {""}PDF And Txt Files{""}
         </span>
       </h1>
@@ -41,19 +44,27 @@ export const About = () => {
           {""} together
         </span>
       </h1>
-      <div className="flex flex-col w-1/2 ml-10 gap-40">
+      <div className="flex flex-col lg:ml-8 lg:gap-40 gap-10">
        
-        <div className="flex flex-row w-48 md:w-88 lg:w-full gap-10 md:gap-40 lg:gap-80">
+        <div className="flex lg:flex-row flex-col w-full lg:p-20 justify-between">
           <pre
             style={{ fontFamily: "Brush script MT" }}
             className="text-6xl mt-6 md:mt-8 lg:mt-14 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 max-[480px]:text-2xl font-semibold"
           >
             Post any Pic
           </pre>
+          <div >
           <img src={aboutimg3} alt="pic" className="rounded-lg" />
+
+          </div>
         </div>
-        <div className="flex flex-row w-48 md:w-88 lg:w-full gap-20 md:gap-40 lg:gap-80">
+
+        <div className="flex lg:flex-row flex-col justify-between  w-full lg:px-20">
+          <div>
           <img src={aboutimg4} alt="pic" className="rounded-lg" />
+
+          </div>
+          
           <h1 className="text-6xl max-[480px]:text-2xl font-semibold">
             Connect with more people
           </h1>

@@ -25,7 +25,7 @@ const notify = () =>
   });
 
 export const ShareButton = ({ post }) => {
-  const currentPageUrl = `http://localhost:3000/p/${post}`;
+  const currentPageUrl = `/p/${post}`;
   const handleShare = () => {
     navigator.clipboard.writeText(currentPageUrl);
     notify();

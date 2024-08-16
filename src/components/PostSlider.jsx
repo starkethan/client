@@ -12,36 +12,36 @@ export const PostSlider = () => {
 
     const slides = [
         {
-          url: 'http://localhost:3001/profile/pic_1710765355574.jpg',
-          type: getExtensionFromUrl('http://localhost:3001/profile/pic_1710765355574.jpg') 
+          url: `${process.env.REACT_APP_API}/profile/pic_1710765355574.jpg`,
+          type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1710765355574.jpg`) 
         },  
         {
-            url: 'http://localhost:3001/profile/pic_1715332169600.jpg',
-            type: getExtensionFromUrl('http://localhost:3001/profile/pic_1715332169600.jpg') 
+            url: `${process.env.REACT_APP_API}/profile/pic_1715332169600.jpg`,
+            type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1715332169600.jpg`) 
           }, 
           {
-            url: 'http://localhost:3001/profile/pic_1714144929977.jpg',
-            type: getExtensionFromUrl('http://localhost:3001/profile/pic_1714144929977.jpg') 
+            url: `${process.env.REACT_APP_API}/profile/pic_1714144929977.jpg`,
+            type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1714144929977.jpg`) 
           },
            {
-            url: 'http://localhost:3001/profile/pic_1714146074030.jpg',
-            type: getExtensionFromUrl('http://localhost:3001/profile/pic_1714146074030.jpg') 
+            url: `${process.env.REACT_APP_API}/profile/pic_1714146074030.jpg`,
+            type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1714146074030.jpg`) 
           }, 
           {
-            url: 'http://localhost:3001/profile/pic_1714569335834.jpg',
-            type: getExtensionFromUrl('http://localhost:3001/profile/pic_1714569335834.jpg') 
+            url: `${process.env.REACT_APP_API}/profile/pic_1714569335834.jpg`,
+            type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1714569335834.jpg`) 
           }, 
           {
-            url: 'http://localhost:3001/profile/pic_1714571248468.jpg',
-            type: getExtensionFromUrl('http://localhost:3001/profile/pic_1714571248468.jpg') 
+            url: `${process.env.REACT_APP_API}/profile/pic_1714571248468.jpg`,
+            type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1714571248468.jpg`) 
           }, 
 
     ]
 
 
     //   const slides = files ? files.map(f => ({
-//       url: 'http://localhost:3001/posts/' + f.file,
-//       type: getExtensionFromUrl('http://localhost:3001/posts/' + f.file) ,
+//       url: `${process.env.REACT_APP_API}/posts/` + f.file,
+//       type: getExtensionFromUrl(`${process.env.REACT_APP_API}/posts/` + f.file) ,
 //     }))
 //   ) : null;
   
@@ -140,14 +140,4 @@ export const PostSlider = () => {
 }
 
 
-
-//   const slides = stories ? stories.flatMap(story =>
-//     story.stories.filter(s => s.username === username).map(s => ({
-//       url: 'http://localhost:3001/stories/' + s.story,
-//       type: getExtensionFromUrl('http://localhost:3001/stories/' + s.story) ,
-//       userId: s.userId,
-//       username: s.username,
-//       createdAt: s.createdAt
-//     }))
-//   ) : null;
   

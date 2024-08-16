@@ -7,9 +7,14 @@ import { Slider } from '../components/Slider';
 
 export const StatusShow = () => {
   const [status, setStatus] = useState([]);
+
+  useEffect(() => {
+    document.title = "Status | Hucschat"
+  })
+
   useEffect(() => {
     axios
-      .get("http://localhost:3001/story/getstory")
+      .get(`${process.env.REACT_APP_API}/story/getstory`)
       .then((status) => setStatus(status.data))
       .catch((err) => console.log(err));
   }, []);

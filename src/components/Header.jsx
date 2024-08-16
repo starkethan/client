@@ -30,7 +30,7 @@ export const Header = ({user}) => {
 
     const handleLogout = () => {
         axios
-          .get("http://localhost:3001/auth/logout")
+          .get(`${process.env.REACT_APP_API}/auth/logout`)
           .then((res) => {
             if (res.data.status) {
               localStorage.removeItem('user')

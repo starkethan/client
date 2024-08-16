@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import profile from "../components/assets/userprofile.jpg";
 import { LeftNavbar } from "../components/LeftNavbar";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,6 +13,10 @@ export const EditProfile = () => {
   const [gender, setGender] = useState();
   const [pic, setPic] = useState();
 
+  useEffect(() => {
+    document.title = "Edit | Hucschat"
+  })
+
   const formData = new FormData();
   formData.append("pic", pic);
 
@@ -22,7 +26,7 @@ export const EditProfile = () => {
     e.preventDefault();
 
     axios
-      .put("http://localhost:3001/auth/editprofile/" + id, {
+      .put(`${process.env.REACT_APP_API}/auth/editprofile/` + id, {
         website,
         bio,
         birthday,
@@ -39,7 +43,7 @@ export const EditProfile = () => {
   const changePhoto = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3001/auth/editphoto/" + id, formData)
+      .put(`${process.env.REACT_APP_API}/auth/editphoto/` + id, formData)
       .then((res) => {
         if (res.data === "Success") {
           navigate(`/profile/${user.username}`);
@@ -56,7 +60,7 @@ export const EditProfile = () => {
         <div className="flex flex-row justify-between dark:bg-black bg-slate-200 border border-slate-400 mb-2 rounded-2xl lg:w-[600px] px-4">
           {user.pic ? (
             <img
-              src={`http://localhost:3001/profile/${user.pic}`}
+              src={`${process.env.REACT_APP_API}/profile/${user.pic}`}
               alt="profile"
               className="w-20 h-20 my-2 rounded-full"
             />

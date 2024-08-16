@@ -11,10 +11,12 @@ import { LikeButton } from "./LikeButton";
 import { MatchedUser } from "./MatchedUser";
 import { Report } from "./Report";
 
-export const Post = ({posts}) => {
+export const FriendsPost = ({ post }) => {
   const [users, setUsers] = useState([]);
   var user = JSON.parse(localStorage.getItem("user"));
 
+
+  console.log(post);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,15 +41,9 @@ export const Post = ({posts}) => {
   
   return (
     <div>
-      { user ? 
-      <div>
-      {posts
-        .slice()
-        .reverse()
-        .map((post) => (
 
           <div
-            key={post._id}
+            
             className=" bg-white dark:bg-black flex flex-col border dark:border-gray-600 border-black mb-3 rounded-lg shadow-md"
           >
             <div className="flex flex-row justify-between border-b border-black-50">
@@ -206,8 +202,8 @@ export const Post = ({posts}) => {
             </div>
             
           </div>
-        ))}
-        </div>:<> </> }
+        
+        
     </div>
   );
 };

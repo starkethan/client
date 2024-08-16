@@ -5,8 +5,11 @@ import axios from 'axios'
 export const Notification = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
+    document.title = "Hucschat"
+  })
+  useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setUser(response.data);
       })

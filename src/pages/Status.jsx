@@ -5,9 +5,12 @@ import axios from 'axios';
 
 export const Status = () => {
   const [s, setS] = useState([]);
+  useEffect(() => {
+    document.title = "Status | Hucschat"
+  })
     useEffect(() => {
       axios
-        .get("http://localhost:3001/story/getstory")
+        .get(`${process.env.REACT_APP_API}/story/getstory`)
         .then((s) => setS(s.data))
         .catch((err) => console.log(err));
     }, []);

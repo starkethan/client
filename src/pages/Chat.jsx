@@ -7,7 +7,9 @@ import { Link, useParams } from "react-router-dom";
 import { ChatBox } from "../components/ChatBox";
 
 export const Chat = () => {
-
+  useEffect(() => {
+    document.title = "Chat | Hucschat"
+  })
   var user = JSON.parse(localStorage.getItem("user"));
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -24,7 +26,7 @@ export const Chat = () => {
   }, [sendMessage]);
 
   useEffect(() => {
-    socket.current = io("http://localhost:3001");
+    socket.current = io(`${process.env.REACT_APP_API}`);
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
@@ -42,7 +44,7 @@ export const Chat = () => {
     const getChats = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3001/chat/${user._id}`
+          `${process.env.REACT_APP_API}/chat/${user._id}`
         );
         setChats(data);
       } catch (error) {

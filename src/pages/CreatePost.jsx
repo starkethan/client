@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LeftNavbar } from "../components/LeftNavbar";
 
 
@@ -7,7 +7,9 @@ export const CreatePost = () => {
   var user = JSON.parse(localStorage.getItem("user"));
   const [description, setDescription] = useState();
   const [file, setFile] = useState();
-
+  useEffect(() => {
+    document.title = "Create | Hucschat"
+  })
 
   const handleSubmit = (e, id) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export const CreatePost = () => {
     
 if (file){
     axios
-      .post("http://localhost:3001/post/create/" +id, formData)
+      .post(`${process.env.REACT_APP_API}/post/create/` +id, formData)
       .then((res) => {
         if (res.data === "Success") {
           window.location.href = "/home";

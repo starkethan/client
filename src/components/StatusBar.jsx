@@ -10,7 +10,7 @@ export const StatusBar = () => {
     const [u, setU] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getuser")
+      .get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setU(response.data);
       })
@@ -20,7 +20,7 @@ export const StatusBar = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
       axios
-        .get("http://localhost:3001/auth/getusers")
+        .get(`${process.env.REACT_APP_API}/auth/getusers`)
         .then((users) => setUsers(users.data))
         .catch((err) => console.log(err));
     }, []);
@@ -43,7 +43,7 @@ export const StatusBar = () => {
         formData.append("story", story[i]);
       }
 
-      axios.post('http://localhost:3001/story/s', formData)
+      axios.post(`${process.env.REACT_APP_API}/story/s`, formData)
       .then((res) => {
         if (res.data === "Success") {
           window.location.reload();
@@ -56,7 +56,7 @@ export const StatusBar = () => {
 
    const  deleteStatus = (e, userId) => {
     e.preventDefault();
-    axios.put('http://localhost:3001/story/delete', {userId} )
+    axios.put(`${process.env.REACT_APP_API}/story/delete`, {userId} )
     .then((res) => {
       if (res.data === "Success") {
         window.location.reload();
@@ -89,7 +89,7 @@ export const StatusBar = () => {
                             <button>
                              
   <div> 
-  <img src={`http://localhost:3001/profile/${u.pic}`} alt="profile" className='h-14 w-14 rounded-full ' />
+  <img src={`${process.env.REACT_APP_API}/profile/${u.pic}`} alt="profile" className='h-14 w-14 rounded-full ' />
     <p className='font-bold dark:text-white'>Me</p>
 
 </div>
@@ -253,7 +253,7 @@ export const StatusBar = () => {
                           <Link to={`/status/${user.username}`}>
                             {  !user.pic ?
                           <img src={pic} alt="profile" className='rounded-full w-14 h-14' /> 
-                     :    <img src={`http://localhost:3001/profile/${user.pic}`} alt="profile" className='rounded-full w-14 h-14' /> 
+                     :    <img src={`${process.env.REACT_APP_API}/profile/${user.pic}`} alt="profile" className='rounded-full w-14 h-14' /> 
                             
                           }
                           { user.username.length > 6 ? 
