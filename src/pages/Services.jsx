@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect} from 'react'
 // import { RWebShare } from "react-web-share";
 
@@ -41,12 +42,15 @@ export const Services = () => {
 // }, [theme]);
 
  
+=======
+import React from 'react'
+ 
+export const Services = () => {
+>>>>>>> 85a7fe2e5c348c3a4c92391de8f38bdfa8a2bb07
   return (
-
     <div className='dark:bg-black dark:text-white '>
-      
-     
       <h1 className='text-6xl'>  No Services Available</h1> 
+<<<<<<< HEAD
 
 
 {/* <div>
@@ -91,6 +95,8 @@ export const Services = () => {
 
 
 
+=======
+>>>>>>> 85a7fe2e5c348c3a4c92391de8f38bdfa8a2bb07
 </div>
   )
 }
