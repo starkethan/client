@@ -13,7 +13,7 @@ export const PostSlider = () => {
     const slides = [
         {
           url: `${process.env.REACT_APP_API}/profile/pic_1710765355574.jpg`,
-          type: getExtensionFromUrl(`${process.env.REACT_APP_API}/profile/pic_1710765355574.jpg`) 
+          type: getExtensionFromUrl(`ssssss${process.env.REACT_APP_API}/profile/pic_1710765355574.jpg`) 
         },  
         {
             url: `${process.env.REACT_APP_API}/profile/pic_1715332169600.jpg`,
