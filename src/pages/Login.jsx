@@ -16,7 +16,7 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post(`https://server-erfu.onrender.com/auth/login`, {
+    Axios.post(`${process.env.REACT_APP_API}/auth/login`, {
       email,
       password,
     })
@@ -33,17 +33,6 @@ export const Login = () => {
         console.log(err);
       });
   };
-
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    Axios
-      .get(`https://server-erfu.onrender.com/auth/getusers`)
-      .then((users) => setUsers(users.data))
-      .catch((err) => console.log(err));
-  }, []);
-
-
   return (
     <div className="lg:flex lg:flex-row lg:justify-between lg:pr-60 bg-gray-100">
       <Link to='/about' className="bg-gray-100"><img src={logo} alt="logo" className="lg:h-20 h-12 m-4"/></Link>
@@ -109,10 +98,6 @@ export const Login = () => {
                     <Link to="/" className="text-blue-500">
                       Sign up
                     </Link>
-
-                    {users.map((user) => {
-                      return <p>{user.username}</p>
-                    })}
                   </p>
                 </div>
               </div>

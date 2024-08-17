@@ -24,7 +24,7 @@ export const Home = () => {
   useEffect(() => {
     if (runOnce.current === false) {
       axios
-        .get(`https://server-erfu.onrender.com/post/getposts?page=${page}`)
+        .get(`${process.env.REACT_APP_API}/post/getposts?page=${page}`)
         .then((posts) => {
           setPosts((prev) => [...prev, ...posts.data]);
           if (posts.data.length > 0) {
@@ -60,7 +60,7 @@ export const Home = () => {
   });
 
   useEffect(() => {
-    Axios.get(`https://server-erfu.onrender.com/auth/getuser`)
+    Axios.get(`${process.env.REACT_APP_API}/auth/getuser`)
       .then((response) => {
         setU(response.data);
       })
@@ -70,7 +70,7 @@ export const Home = () => {
   const navigate = useNavigate();
   Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.get(`https://server-erfu.onrender.com/auth/verify`).then((res) => {
+    Axios.get(`${process.env.REACT_APP_API}/auth/verify`).then((res) => {
       if (res.data.status) {
       } else {
         navigate("/");
