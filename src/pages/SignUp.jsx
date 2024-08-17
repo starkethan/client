@@ -15,7 +15,7 @@ export const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post(`${process.env.REACT_APP_API}/auth/signup`, {
+    Axios.post(`https://server-erfu.onrender.com/auth/signup`, {
       username,
       email,
       password,
